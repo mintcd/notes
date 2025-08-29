@@ -32,7 +32,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # 4. Build notes (all files already go to .out/)
+      # 4. Build notes (all files already go to out/)
       - name: Build notes
         run: npm run build
 
