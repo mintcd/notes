@@ -34,7 +34,6 @@ jobs:
 
       - name: Build notes
         run: npm run build
-        working-directory: ${{ github.workspace }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
