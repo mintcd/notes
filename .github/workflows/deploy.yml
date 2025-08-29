@@ -22,46 +22,35 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # 2. Setup Node.js if needed (for your TypeScript build)
+      # 2. Setup Node.js
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: "latest"
 
-      # 3. Install dependencies (if any)
+      # 3. Install dependencies
       - name: Install dependencies
         run: npm ci
 
-      # # 4. Build notes HTML
-      # - name: Build notes
-      #   run: npm run build
+      # 4. Build notes (all files already go to out/)
+      - name: Build notes
+        run: npm run build
 
       # 5. Prepare Pages deployment
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
-      # 6. Copy generated HTML to artifact folder
-      - name: Copy notes to out/
-        run: |
-          mkdir -p out
-          for d in slides/*; do
-            if [ -d "$d" ]; then
-              name=$(basename "$d")
-              mkdir -p out/$name
-              cp "$d/main.html" "out/$name/index.html"
-            fi
-          done
   deploy:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      # 7. Upload artifact to GitHub Pages
+      # 6. Upload artifact to GitHub Pages
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./out
+          path: ./.out
 
-      # 8. Deploy to GitHub Pages
+      # 7. Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

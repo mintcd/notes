@@ -4,7 +4,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "build": "node scripts/tikz-to-svg.ts",
+    "gen": "node scripts/tikz-to-svg.ts",
+    "build": "node scripts/build.ts",
     "clean": "rimraf --glob \"**/*.aux\" \"**/*.log\" \"**/*.fls\" \"**/*.nav\" \"**/*.out\" \"**/*.toc\" \"**/*.snm\" \"**/*.bbl\" \"**/*.bbl-SAVE-ERROR\" \"**/*.bcf\" \"**/*.blg\" \"**/*.run.xml\" \"**/*.synctex.gz\" \"**/*.fdb_latexmk\" \"**/*.cb\" \"**/*.cb2\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
