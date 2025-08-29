@@ -18,43 +18,33 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      # 1. Checkout the notes repository
       - name: Checkout
         uses: actions/checkout@v4
 
-      # 2. Setup Node.js
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: "latest"
 
-      # 3. Install dependencies
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
       - name: Install dependencies
         run: npm ci
 
-      # 4. Build notes (all files already go to out/)
       - name: Build notes
         run: npm run build
         working-directory: ${{ github.workspace }}
 
-      - name: Verify out/ exists
-        run: ls -l ./out
-
-      # 5. Prepare Pages deployment
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      # 6. Upload artifact to GitHub Pages
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./out
 
-      # 7. Deploy to GitHub Pages
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
