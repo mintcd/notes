@@ -32,9 +32,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # 4. Build notes HTML
-      - name: Build notes
-        run: npm run build
+      # # 4. Build notes HTML
+      # - name: Build notes
+      #   run: npm run build
 
       # 5. Prepare Pages deployment
       - name: Setup Pages
