@@ -20,4 +20,4 @@ node_modules
 *.cb
 *.cb2
 
-.out
+out
