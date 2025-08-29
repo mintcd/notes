@@ -4,7 +4,7 @@ import { join, basename } from "path";
 // ----------------------------
 // Configuration
 // ----------------------------
-const OUT_DIR = "out/notes";
+const OUT_DIR = "out";
 mkdirSync(OUT_DIR, { recursive: true });
 
 // ----------------------------
