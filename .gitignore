@@ -16,3 +16,5 @@
 .vscode
 *.cb
 *.cb2
+
+node_modules

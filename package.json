@@ -2,8 +2,10 @@
   "name": "notes",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "build": "python tikz2svg.py",
+    "build": "node scripts/tikz-to-svg.ts",
+    "clean": "rimraf --glob \"**/*.aux\" \"**/*.log\" \"**/*.fls\" \"**/*.nav\" \"**/*.out\" \"**/*.toc\" \"**/*.snm\" \"**/*.bbl\" \"**/*.bbl-SAVE-ERROR\" \"**/*.bcf\" \"**/*.blg\" \"**/*.run.xml\" \"**/*.synctex.gz\" \"**/*.fdb_latexmk\" \"**/*.cb\" \"**/*.cb2\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -12,9 +14,13 @@
   },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/mintcd/notes/issues"
-  },
   "homepage": "https://github.com/mintcd/notes#readme",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "@types/node": "^24.3.0",
+    "glob": "^11.0.3",
+    "rimraf": "^6.0.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
+  }
 }
