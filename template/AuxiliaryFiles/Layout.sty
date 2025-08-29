@@ -130,14 +130,14 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SECTION PAGE
 \setbeamertemplate{section page}[default]
 \newcommand{\SectionPage}[0]{
-\AtBeginSection{
-\begingroup
-\setbeamertemplate{navigation symbols}{}
+\AtBeginSection[]{
   \begin{frame}[plain, noframenumbering]
+    \setbeamertemplate{navigation symbols}{}
     \parbox{12.5cm}{\huge\raggedleft\insertsection\vspace{.15cm}}
     \rule{1\textwidth}{0.1pt}
   \end{frame}
-  \endgroup}}
+}
+}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SECTION PAGE
 \setbeamertemplate{subsection page}[default]
 \newcommand{\SubsectionPage}[0]{

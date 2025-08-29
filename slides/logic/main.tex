@@ -1,0 +1,24 @@
+\documentclass[xcolor=dvipsnames, aspectratio=169, 10pt]{beamer}
+
+\usepackage{import}
+
+\import{../../template}{main.tex}
+\newcommand{\Title}{Logic}
+\newcommand{\Logo}{example-image-c}
+\addbibresource{refs.bib}
+\usepackage{tikz}
+\usetikzlibrary {automata,positioning, calc}
+
+
+\begin{document}
+\TitlePage
+\SectionPage
+\SubsectionPage
+\ProgressBar
+\PageNumbering
+% \include{sections/intro}
+\include{sections/propositional-logic}
+\begin{frame}
+  \printbibliography
+\end{frame}
+\end{document}

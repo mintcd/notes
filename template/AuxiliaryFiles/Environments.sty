@@ -29,32 +29,45 @@
     \setlength{\mylabelwidth}{\wd\labelbox}
     \usebox{\labelbox}}
 
-\setlist[description]{
-    leftmargin=!,
-    labelwidth=!,
-    labelindent=0\parindent,
-    labelsep=1em,
-    topsep=\baselineskip,
-    itemsep=1.5\baselineskip,
-    parsep=-.75\baselineskip,
-    style=sameline}
+\setbeamertemplate{description item}{\textbf{\insertdescriptionitem}} % default bold label
+\setlength{\leftmargini}{1em}  % left margin
+\setlength{\itemsep}{1.5\baselineskip}  % space between items
+\setlength{\parsep}{-0.75\baselineskip} % paragraph separation
 
-\newcommand{\labelitemi}{\scalebox{.85}{$\diamond$}}
-\setlist[itemize]{style=multiline,
-	topsep=\baselineskip,
-	itemsep=-.4cm,
-	parsep=.5cm,
-	labelwidth=.4cm,
-	labelindent=\parindent,
-	leftmargin=1cm}
+\setbeamertemplate{itemize item}{\scalebox{0.85}{$\diamond$}}  % like your \labelitemi
 
-\setlist[enumerate]{style=multiline,
-	topsep=\baselineskip,
-    itemsep=-.4cm,
-	parsep=.5cm,
-	labelwidth=0.4cm,
-	labelindent=\parindent,
-    leftmargin=1cm}
+% Spacing
+\setlength{\itemsep}{-0.4cm}   % between items
+\setlength{\topsep}{\baselineskip}  % space before list
+\setlength{\parsep}{0.5cm}     % paragraph separation in item
+\setlength{\leftmargini}{1cm}  % left margin
+
+% \setlist[description]{
+%     leftmargin=!,
+%     labelwidth=!,
+%     labelindent=0\parindent,
+%     labelsep=1em,
+%     topsep=\baselineskip,
+%     itemsep=1.5\baselineskip,
+%     parsep=-.75\baselineskip,
+%     style=sameline}
+
+% \newcommand{\labelitemi}{\scalebox{.85}{$\diamond$}}
+% \setlist[itemize]{style=multiline,
+% 	topsep=\baselineskip,
+% 	itemsep=-.4cm,
+% 	parsep=.5cm,
+% 	labelwidth=.4cm,
+% 	labelindent=\parindent,
+% 	leftmargin=1cm}
+
+% \setlist[enumerate]{style=multiline,
+% 	topsep=\baselineskip,
+%     itemsep=-.4cm,
+% 	parsep=.5cm,
+% 	labelwidth=0.4cm,
+% 	labelindent=\parindent,
+%     leftmargin=1cm}
 
 %%%%%                           	MATH ENVIRONMENTS
 \setbeamercolor{EnvCol}{bg=gray!20,fg=black} % define a new color theme for the box
