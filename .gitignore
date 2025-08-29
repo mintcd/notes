@@ -1,3 +1,6 @@
+
+node_modules
+
 # Latex auxiliary files
 *.aux
 *.log
@@ -16,5 +19,3 @@
 .vscode
 *.cb
 *.cb2
-
-node_modules
