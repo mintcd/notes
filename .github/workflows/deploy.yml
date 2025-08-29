@@ -35,6 +35,10 @@ jobs:
       # 4. Build notes (all files already go to out/)
       - name: Build notes
         run: npm run build
+        working-directory: ${{ github.workspace }}
+
+      - name: Verify out/ exists
+        run: ls -l ./out
 
       # 5. Prepare Pages deployment
       - name: Setup Pages
