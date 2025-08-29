@@ -56,8 +56,8 @@ jobs:
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
 
-      - name: Build notes
-        run: ${{ steps.detect-package-manager.outputs.manager }} run build
+      # - name: Build notes
+      #   run: ${{ steps.detect-package-manager.outputs.manager }} run build
 
       - name: Copy notes
         run: |
