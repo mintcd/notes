@@ -1,3 +1,4 @@
+// scripts/tikz-to-svg.ts
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "fs";
 import { spawnSync } from "child_process";
 import { dirname, resolve, join } from "path";
@@ -51,9 +52,6 @@ function inlineIncludes(texPath: string, visited = new Set<string>()): string {
   return merged.join("\n");
 }
 
-// ----------------------------
-// Process one main.tex
-// ----------------------------
 function processMainTex(mainTex: string) {
   console.log(`\nProcessing: ${mainTex}`);
   const parentDir = dirname(mainTex);
@@ -119,35 +117,40 @@ ${block}
   writeFileSync(finalTex, finalContent, "utf8");
   console.log(`Prepared LaTeX for Pandoc: ${finalTex}`);
 
-  // Run Pandoc
+  // Run Pandoc -> write in-place as index.html
   const bibPath = join(parentDir, BIB_FILE);
-  const outputHtml = join(parentDir, "main.html");
-  run(PANDOC_CMD, [
+  const outputHtml = join(parentDir, "index.html");
+  const pandocArgs = [
     finalTex,
     "--citeproc",
-    "--bibliography",
-    bibPath,
+    ...(existsSync(bibPath) ? ["--bibliography", bibPath] : []),
     "-t",
-    // "revealjs",
     "html5",
     "-s",
     "--mathjax",
     "-o",
     outputHtml,
-  ]);
+  ];
+  run(PANDOC_CMD, pandocArgs);
 }
 
-// ----------------------------
-// Main loop
-// ----------------------------
-const mainFiles = glob.sync("slides/**/main.tex"); // use forward slashes
-if (mainFiles.length === 0) {
-  console.error("No main.tex files found under slides/");
-  process.exit(1);
+/**
+ * Build all slide decks located under `folderPath`.
+ *
+ * Accepts absolute or relative path.
+ *   buildSlidesAt("slides/lecture01") -> writes slides/lecture01/index.html
+ *   buildSlidesAt("slides")           -> builds every subdir with main.tex
+ */
+export function buildSlidesAt(folderPath: string) {
+  const abs = resolve(folderPath);
+  const mainFiles = glob.sync(`${abs.replace(/\\/g, "/")}/**/main.tex`);
+  if (mainFiles.length === 0) {
+    console.warn(`No main.tex files found under: ${abs}`);
+    return;
+  }
+  console.log(`Found ${mainFiles.length} main.tex file(s) under ${abs}.`);
+  for (const mainTex of mainFiles) {
+    processMainTex(mainTex);
+  }
+  console.log(`Done building slides under: ${abs}`);
 }
-
-console.log(`Found ${mainFiles.length} main.tex file(s).`);
-for (const mainTex of mainFiles) {
-  processMainTex(mainTex);
-}
-console.log("\nAll TikZ figures converted and HTML slides generated!");

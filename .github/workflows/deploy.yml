@@ -21,24 +21,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: "latest"
-
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build notes
-        run: npm run build
+      # No build step — outputs are already committed
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./out
+          # Serve the whole repo so the root index.html is used
+          path: ./
 
   deploy:
     needs: build
