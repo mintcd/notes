@@ -24,13 +24,11 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
-      # No build step — outputs are already committed
-
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           # Serve the whole repo so the root index.html is used
-          path: ./
+          path: ./slides
 
   deploy:
     needs: build
