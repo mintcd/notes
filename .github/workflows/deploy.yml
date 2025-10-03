@@ -27,7 +27,6 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Serve the whole repo so the root index.html is used
           path: ./slides
 
   deploy:

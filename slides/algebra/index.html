@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Complexity Theory</title>
+  <title>Algebra</title>
   <style>
     html {
       color: #1a1a1a;
@@ -166,6 +166,24 @@
       vertical-align: middle;
     }
   </style>
+  <script defer=""
+  src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css" />
   <meta name="color-scheme" content="light dark">
 <!-- injected:styles.css -->
 <style>
@@ -378,20 +396,38 @@ h1:hover .anchor, h2:hover .anchor, h3:hover .anchor, h4:hover .anchor { visibil
     <summary>Contents</summary>
     
 <ul>
-<li><a href="#np" id="toc-np"><span class="toc-section-number">1</span>
-NP</a></li>
+<li><a href="#groups" id="toc-groups"><span
+class="toc-section-number">1</span> Groups</a></li>
 </ul>
 
   </details>
 </nav>
 
 
-<h1 data-number="1" id="np"><span class="header-section-number">1</span>
-NP</h1>
+<h1 data-number="1" id="groups"><span
+class="header-section-number">1</span> Groups</h1>
 <div class="frame">
-<div id="complexity-theory-definition-1.1" class="definition"
-data-number="1.1" data-title="NP">
-<p>is the class of decision</p>
+<div id="algebra-theorem-1.1" class="theorem" data-number="1.1">
+<p>Let <span class="math inline">G</span> be a finite group, and let
+<span class="math inline">H</span> be a subgroup of <span
+class="math inline">G</span>. Then the order of <span
+class="math inline">H</span> divides the order of <span
+class="math inline">G</span>.</p>
+</div>
+<div id="algebra-proof-1.1" class="proof" data-number="1.1">
+<p><em>Proof.</em> Since <span class="math inline">G</span> is finite,
+there exist finitely many left cosets of <span
+class="math inline">H</span> in <span class="math inline">G</span>. Let
+<span class="math inline">m</span> be the largest integer such that the
+cosets <span class="math inline">g_1H, g_2H, \ldots, g_mH</span> are
+distinct.</p>
+<p><em>Claim</em>. <span class="math inline">\forall i\in
+\{1,\ldots,m\}, \text{card}(g_iH) = \text{card}(H)</span>.</p>
+<p><em>Claim.</em> <span class="math inline">\forall i,j\in
+\{1,\ldots,m\}</span> and <span class="math inline">i\ne j</span>, <span
+class="math inline">g_iH\cap g_jH = \varnothing</span>.</p>
+<p><em>Claim.</em> <span class="math inline">G = \bigcup_{i=1}^m
+g_iH</span>. ◻</p>
 </div>
 </div>
 <!-- injected:index.js -->

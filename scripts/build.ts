@@ -1,17 +1,9 @@
 // scripts/build.ts
-import { existsSync, readdirSync, statSync, copyFileSync } from "fs";
+import { existsSync, readdirSync, statSync } from "fs";
 import { join, resolve } from "path";
-import { buildSlidesAt } from "./tikz-to-svg.ts";
+import texToHtml from "./tex-to-html.ts";
+import postprocessHtml from "./postprocessHtml.ts";
 
-// ----------------------------
-// Parse CLI args
-// ----------------------------
-// Usage examples:
-//   node scripts/build.ts
-//   node scripts/build.ts lecture01
-//   node scripts/build.ts lecture01 lecture02
-//   node scripts/build.ts lecture01,lecture02
-//   node scripts/build.ts --only lecture01,lecture02
 function parseTargets(argv: string[]): string[] | null {
   const raw = argv.filter(a => !a.startsWith("--only=") && a !== "--only");
   const flagEq = argv.find(a => a.startsWith("--only="));
@@ -35,9 +27,6 @@ function parseTargets(argv: string[]): string[] | null {
 
 const targets = parseTargets(process.argv.slice(2));
 
-// ----------------------------
-// Build in place (no "out/" dir)
-// ----------------------------
 const slidesRoot = resolve("slides");
 if (!existsSync(slidesRoot) || !statSync(slidesRoot).isDirectory()) {
   console.error(`Slides directory not found: ${slidesRoot}`);
@@ -67,19 +56,7 @@ if (targets) {
     .filter(abs => existsSync(abs) && statSync(abs).isDirectory());
 }
 
-// Run the TikZ→SVG→HTML pipeline per folder (produces <folder>/index.html)
 for (const absFolder of foldersToBuild) {
-  buildSlidesAt(absFolder);
+  texToHtml(absFolder);
+  postprocessHtml(absFolder);
 }
-
-// ----------------------------
-// Optional: promote homepage.html -> ./index.html
-// ----------------------------
-const homepageSrc = resolve("homepage.html");
-const homepageDest = resolve("index.html");
-if (existsSync(homepageSrc)) {
-  copyFileSync(homepageSrc, homepageDest);
-  console.log(`Copied homepage to ${homepageDest}`);
-}
-
-console.log("Build complete (in-place).");

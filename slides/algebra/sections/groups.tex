@@ -1,0 +1,16 @@
+\section{Groups}
+\begin{frame}[allowframebreaks]
+
+  \begin{theorem}[\thmtitle{Lagrange's Theorem}]
+    Let \(G\) be a finite group, and let \(H\) be a subgroup of \(G\). Then the order of \(H\) divides the order of \(G\).
+  \end{theorem}
+  \begin{proof}
+    Since $G$ is finite, there exist finitely many left cosets of $H$ in $G$. Let $m$ be the largest integer such that the cosets $g_1H, g_2H, \ldots, g_mH$ are distinct.
+
+    \textit{Claim}. $\forall i\in \{1,\ldots,m\}, \text{card}(g_iH) = \text{card}(H)$.
+
+    \textit{Claim.} $\forall i,j\in \{1,\ldots,m\}$ and $i\ne j$, $g_iH\cap g_jH = \varnothing$.
+
+    \textit{Claim.} $G = \bigcup_{i=1}^m g_iH$.
+  \end{proof}
+\end{frame}
